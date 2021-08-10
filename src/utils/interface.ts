@@ -14,3 +14,12 @@ export interface Comments {
 export interface InputCommentProps {
   paste: Pastes
 }
+
+export interface ListOfCommentProps {
+  paste: Pastes
+}
+
+export interface CommentProps {
+  comments: Comments
+
+}

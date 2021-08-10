@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Pastes } from "../utils/interface";
-import { InputComment } from "./comment/InputComment";
+import { ListOfComments } from "./comment/ListOfComments";
 
 export const ListOfPastes = (): JSX.Element => {
   const [pastes, setPastes] = useState<Pastes[]>([]);
@@ -40,7 +40,7 @@ export const ListOfPastes = (): JSX.Element => {
             <th>Paste title</th>
             <th>Paste</th>
             <th>Delete</th>
-            <th>Comment</th>
+            <th>Comments</th>
           </tr>
         </thead>
         <tbody>
@@ -57,7 +57,7 @@ export const ListOfPastes = (): JSX.Element => {
                 </button>
               </td>
               <td>
-                  <InputComment paste={paste} />
+                  <ListOfComments paste={paste} />
               </td>
             </tr>
           ))}
