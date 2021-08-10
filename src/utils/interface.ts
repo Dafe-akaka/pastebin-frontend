@@ -20,6 +20,13 @@ export interface ListOfCommentProps {
 }
 
 export interface CommentProps {
+  comment: Comments
+
+}
+
+export interface DeleteCommentProps {
   comments: Comments
+  setDeletedComment(deletedComment: string): void
+  deletedComment: string
 
 }

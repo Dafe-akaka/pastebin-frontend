@@ -3,7 +3,7 @@ import { Comments, ListOfCommentProps } from "../../utils/interface";
 import { InputComment } from "./InputComment";
 
 export const ListOfComments = ({ paste }: ListOfCommentProps) => {
-  const [opinions, setOpinions] = useState<Comments[]>([]);
+  const [comments, setComments] = useState<Comments[]>([]);
 
   const getComments = async () => {
     try {
@@ -11,7 +11,7 @@ export const ListOfComments = ({ paste }: ListOfCommentProps) => {
         `http://localhost:4000/paste/comment/${paste.paste_id}`
       );
       const jsonData = await response.json();
-      setOpinions(jsonData);
+      setComments(jsonData);
     } catch (err) {
       console.error(err.message);
     }
@@ -21,7 +21,19 @@ export const ListOfComments = ({ paste }: ListOfCommentProps) => {
     getComments();
   }, []);
 
-  console.log(opinions)
+  const deleteComments = async (id: number) => {
+    try {
+      const deleteComments = await fetch(`http://localhost:4000/paste/comment/${id}`, {
+        method: "DELETE",
+      });
+
+      setComments(comments.filter((comment) => comment.comment_id !== id));
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  
+
 
   return (
     <div>
@@ -42,7 +54,7 @@ export const ListOfComments = ({ paste }: ListOfCommentProps) => {
               <button
                 type="button"
                 className="close"
-                onClick={() => setOpinions(opinions)}
+                onClick={() => setComments(comments)}
                 data-dismiss="modal"
               >
                 &times;
@@ -53,9 +65,15 @@ export const ListOfComments = ({ paste }: ListOfCommentProps) => {
               <InputComment paste={paste}/>
             </div>
             <div>
-                {opinions.map((opinion) => (
-                  <div key= {opinion.comment_id}> 
-                  <p>{opinion.comment}</p>
+                {comments.map((comment) => (
+                  <div className= "justify-content-center" key= {comment.comment_id}> 
+                  <p className= "mb-1">{comment.comment}</p>
+                  <button
+                  type="button" className="btn btn-danger btn-block"
+                  onClick={() => deleteComments(comment.comment_id)}
+                >
+                  Delete comment
+                </button>
                   </div>
                 ))}
               </div>

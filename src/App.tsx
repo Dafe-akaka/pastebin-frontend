@@ -15,7 +15,7 @@ function App() {
             <InputPaste />
           </Col>
           <Col lg="auto">
-            <h2>Paste History</h2>
+            <h3>Paste History</h3>
             <ListOfPastes />
           </Col>
         </Row>
