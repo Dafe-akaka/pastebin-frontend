@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { InputPaste } from "./components/InputPaste";
+import { ListOfPastes } from "./components/ListOfPastes";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col xs lg="auto">
+            <h3>Paste</h3>
+            <InputPaste />
+          </Col>
+          <Col lg="auto">
+            <h2>Paste History</h2>
+            <ListOfPastes />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
