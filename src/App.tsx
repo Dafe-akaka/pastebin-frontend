@@ -8,8 +8,9 @@ import Col from "react-bootstrap/Col";
 function App() {
   return (
     <div>
-      <Container>
-        <Row className="justify-content-md-center">
+      
+      <Container className="justify-content-center mt-8">
+        <Row className="justify-content-center">
           <Col xs lg="auto">
             <h3>Paste</h3>
             <InputPaste />
