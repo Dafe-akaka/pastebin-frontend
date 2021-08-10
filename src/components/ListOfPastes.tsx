@@ -57,7 +57,7 @@ export const ListOfPastes = (): JSX.Element => {
                 </button>
               </td>
               <td>
-                  <ListOfComments paste={paste} />
+                <ListOfComments paste={paste} />
               </td>
             </tr>
           ))}

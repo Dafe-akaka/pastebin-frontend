@@ -4,7 +4,7 @@ export interface Pastes {
     paste: string;
 }
 
-export interface Comments {
+export interface CommentsProps {
   comment_id : number
   comment: string 
   paste_id: number 
@@ -19,14 +19,3 @@ export interface ListOfCommentProps {
   paste: Pastes
 }
 
-export interface CommentProps {
-  comment: Comments
-
-}
-
-export interface DeleteCommentProps {
-  comments: Comments
-  setDeletedComment(deletedComment: string): void
-  deletedComment: string
-
-}

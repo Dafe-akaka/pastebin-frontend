@@ -14,10 +14,9 @@ export const InputPaste = (): JSX.Element => {
         headers: { "content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-        
+
       window.location.href = "/";
       console.log(response);
-      
     } catch (err) {
       console.error(err.message);
     }

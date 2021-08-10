@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Comments, ListOfCommentProps } from "../../utils/interface";
+import { CommentsProps, ListOfCommentProps } from "../../utils/interface";
 import { InputComment } from "./InputComment";
 
 export const ListOfComments = ({ paste }: ListOfCommentProps) => {
-  const [comments, setComments] = useState<Comments[]>([]);
+  const [comments, setComments] = useState<CommentsProps[]>([]);
 
   const getComments = async () => {
     try {
@@ -23,17 +23,18 @@ export const ListOfComments = ({ paste }: ListOfCommentProps) => {
 
   const deleteComments = async (id: number) => {
     try {
-      const deleteComments = await fetch(`http://localhost:4000/paste/comment/${id}`, {
-        method: "DELETE",
-      });
+      const deleteComments = await fetch(
+        `http://localhost:4000/paste/comment/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       setComments(comments.filter((comment) => comment.comment_id !== id));
     } catch (err) {
       console.error(err.message);
     }
   };
-  
-
 
   return (
     <div>
@@ -62,22 +63,25 @@ export const ListOfComments = ({ paste }: ListOfCommentProps) => {
             </div>
 
             <div className="modal-body">
-              <InputComment paste={paste}/>
+              <InputComment paste={paste} />
             </div>
             <div>
-                {comments.map((comment) => (
-                  <div className= "justify-content-center" key= {comment.comment_id}> 
-                  <p className= "mb-1">{comment.comment}</p>
-                  <button
-                  type="button" className="btn btn-danger btn-block"
-                  onClick={() => deleteComments(comment.comment_id)}
+              {comments.map((comment) => (
+                <div
+                  className="justify-content-center"
+                  key={comment.comment_id}
                 >
-                  Delete comment
-                </button>
-                  </div>
-                ))}
-              </div>
-
+                  <p className="mb-1">{comment.comment}</p>
+                  <button
+                    type="button"
+                    className="btn btn-danger btn-block"
+                    onClick={() => deleteComments(comment.comment_id)}
+                  >
+                    Delete comment
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
